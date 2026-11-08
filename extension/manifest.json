@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Costco Price Watcher",
+  "version": "0.1.0",
+  "description": "Reads the price on Costco product pages you open and saves it to your local Price Watcher service. Makes no requests to Costco.",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["http://127.0.0.1/*", "http://localhost/*"],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.costco.com/p/*"],
+      "js": ["dist/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Costco Price Watcher"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

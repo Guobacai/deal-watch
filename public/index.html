@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Costco Price Watcher</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Costco Price Watcher</h1>
+      <div class="header-right">
+        <div id="summary" aria-live="polite">Loading…</div>
+        <button id="check-all" type="button" class="primary">Check all</button>
+      </div>
+    </header>
+    <main>
+      <div id="error" class="error" role="alert" hidden></div>
+      <section id="run" class="run" aria-live="polite" hidden>
+        <div class="run-head">
+          <div><strong id="run-title"></strong> <span id="run-detail" class="muted"></span></div>
+          <button id="run-close" type="button" class="link" aria-label="Hide this message" hidden>Hide</button>
+        </div>
+        <ul id="run-items"></ul>
+      </section>
+      <form id="add" class="add" autocomplete="off">
+        <label class="url">
+          <span>Costco product URL</span>
+          <input name="url" type="url" required placeholder="https://www.costco.com/p/-/…/1234567" spellcheck="false" />
+        </label>
+        <label class="name">
+          <span>Name <span class="muted">(optional)</span></span>
+          <input name="name" type="text" maxlength="200" placeholder="Filled in from the page" />
+        </label>
+        <button type="submit">Add</button>
+      </form>
+      <div id="add-message" class="form-message" aria-live="polite"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col" class="num">Current</th>
+              <th scope="col" class="num">Previous</th>
+              <th scope="col">Change</th>
+              <th scope="col" class="num">Lowest</th>
+              <th scope="col">Checked</th>
+              <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="muted" hidden>
+        No items on the watch list yet. Paste a Costco product URL above to add one.
+      </p>
+      <p class="muted hint">
+        Click an item to see its price history. Prices are saved when a watched product page opens in Chrome. This page refreshes on its own.
+      </p>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
